@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Node Server",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "node server/main.js"
+    },
+    {
+      "name": "React Frontend",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "cd frontend && npm run start",
+      "serverReadyAction": {
+        "pattern": "- Local:.+(https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
+    }
+  ]
+}
