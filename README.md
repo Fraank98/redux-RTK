@@ -1,7 +1,7 @@
 <!---
 Hi! We're happy you opened this file, not everyone does!
-To let us know you did, paste a capybara picture 
-in the How to Run section 😊 
+To let us know you did, paste a capybara picture
+in the How to Run section 😊
 These will be extra points for you!
 -->
 
@@ -29,11 +29,11 @@ written out. Please, write there instructions on how to run your code: we will u
 
 Your work will be assessed according to several criteria. As an example, these include:
 
-* Code quality
-* Design Patterns
-* Project Structure
-* Work quality (commits, branches, workflow, tests, ...)
-* Provided Documentation
+- Code quality
+- Design Patterns
+- Project Structure
+- Work quality (commits, branches, workflow, tests, ...)
+- Provided Documentation
 
 #### A Friendly Reminder:
 
@@ -62,7 +62,7 @@ fewer constraints as possible on your work. We appreciate if you could record an
 together with any questions that you will ask in a real-world scenario. If you want to choose our stack instead, we
 generally work with TypeScript and React.
 
----   
+---
 
 ### Problem Domain
 
@@ -94,10 +94,29 @@ Design a form that allows users to add new recipes by providing details such as 
 instructions, cuisine type, and dietary preference and an image.
 
 ### Challenge #4: Recipe Details and Comments
+
 Develop a recipe details page where users can view the full recipe, including ingredients, instructions, and user
 comments. Enable users to add comments and rate the recipe, displaying the average rating and updating the list of
 comments.
 
 ## How to run
 
-...
+### Installing
+
+Install the project dependencies from the project root:
+
+```bash
+npm install
+```
+
+### Frontend
+
+```bash
+npm start -w frontend
+```
+
+### Server
+
+```bash
+npm start -w server
+```
