@@ -4,14 +4,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#7452BC',
-        secondary: '#FFDC56',
-        tertiary: '#554D62',
-        background: '#38364B',
+        primary: '#F52F26',
+        secondary: '#000000',
         'recipe-card-bg': '#FFFFFF',
+        disabled: '#F86D67',
         text: {
           primary: '#000000',
-          secondary: '#999999',
+          secondary: '#FFFFFF',
+          thin: '#7D7D7D',
         },
       },
       borderRadius: {
@@ -19,8 +19,8 @@ module.exports = {
         element: '9999px',
       },
       boxShadow: {
-        primary:
-          '0px 0px 15px 0px rgba(0,0,0,.03),0px 2px 30px 0px rgba(0,0,0,.08),0px 0px 1px 0px rgba(0,0,0,.3)',
+        default:
+          'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;',
       },
     },
   },

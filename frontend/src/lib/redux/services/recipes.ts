@@ -2,16 +2,19 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   AddCommentRequestBody,
   AddRecipeRequestBody,
+  ExtendedRecipe,
 } from '../../../types/types';
 import type { paths } from '../../../types/backend/backend';
+
+export const BASE_URL = process.env.REACT_APP_API_URL;
 
 export const recipesApi = createApi({
   reducerPath: 'recipesApi',
   tagTypes: ['Recipes', 'Comments'],
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080' }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     getRecipes: builder.query<
-      paths['/recipes']['get']['responses']['200']['content']['application/json'],
+      ExtendedRecipe[],
       paths['/recipes']['get']['parameters']['query']
     >({
       query: (params) => {
@@ -25,14 +28,13 @@ export const recipesApi = createApi({
         if (params?.dietId) queryParams.append('dietId', params.dietId);
         if (params?.difficultyId)
           queryParams.append('difficultyId', params.difficultyId);
-        if (params?._expand)
+        if (params?._expand) {
           params._expand.forEach((expand) =>
             queryParams.append('_expand', expand)
           );
-
+        }
         return {
-          url: '/recipes',
-          params,
+          url: `/recipes?${queryParams.toString()}`, // _expand=cuisine,diet,difficulty is not supported by the backend
         };
       },
       providesTags: (result) =>
@@ -115,4 +117,5 @@ export const {
   useGetRecipeByIdQuery,
   useAddCommentMutation,
   useGetCommentsByRecipeIdQuery,
+  usePrefetch: usePrefetchRecipes,
 } = recipesApi;
