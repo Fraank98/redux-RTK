@@ -25,7 +25,7 @@
     "eject": "react-scripts eject",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
-    "lint": "npx eslint ."
+    "lint": "npx eslint . --ignore-pattern build"
   },
   "eslintConfig": {
     "extends": [
