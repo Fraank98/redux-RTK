@@ -8,6 +8,7 @@ module.exports = {
         secondary: '#000000',
         'recipe-card-bg': '#FFFFFF',
         disabled: '#F86D67',
+        'input-bg': '#FFFFFF',
         text: {
           primary: '#000000',
           secondary: '#FFFFFF',

@@ -212,7 +212,7 @@ paths:
         '200':
           description: The image
           content:
-            image/*:     # Media type
+            image/*: # Media type
               schema:
                 type: string
                 format: binary
@@ -259,17 +259,23 @@ components:
     Cuisine:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
 
     Difficulty:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
 
     Diet:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
