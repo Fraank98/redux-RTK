@@ -18,15 +18,17 @@ export default function useSearchEngine() {
   const dispatch = useAppDispatch();
   const queryParams = useAppSelector((state) => state.searchSlice.queryParams);
   const { data, error, isLoading } = useGetRecipesQuery(queryParams);
+  const difficulty = useAppSelector((state) => state.searchSlice.difficulty);
+  const cuisine = useAppSelector((state) => state.searchSlice.cuisine);
+  const diet = useAppSelector((state) => state.searchSlice.diet);
   const page = useAppSelector((state) => state.searchSlice.page);
   const userInput = useAppSelector((state) => state.searchSlice.userInput);
   const prefetchPage = usePrefetchRecipes('getRecipes');
   const prefetchedData = useAppSelector(
     (state) =>
-      recipesApi.endpoints.getRecipes.select({
-        ...getRecipesQueryParams(page + 1),
-        q: userInput,
-      })(state).data
+      recipesApi.endpoints.getRecipes.select(
+        getRecipesQueryParams(page + 1, userInput, cuisine, diet, difficulty)
+      )(state).data
   );
   // by prefetching data, is it possible to:
   // reduce the perceived loading times when a user navigates
@@ -42,12 +44,13 @@ export default function useSearchEngine() {
 
   useEffect(() => {
     dispatch(
-      setQueryParams({
-        ...getRecipesQueryParams(page),
-        q: userInput,
-      })
+      setQueryParams(
+        getRecipesQueryParams(page, userInput, cuisine, diet, difficulty)
+      )
     );
-    prefetchNextPage({ ...getRecipesQueryParams(page + 1), q: userInput });
+    prefetchNextPage(
+      getRecipesQueryParams(page + 1, userInput, cuisine, diet, difficulty)
+    );
   }, [page]);
 
   useEffect(() => {
@@ -61,9 +64,27 @@ export default function useSearchEngine() {
 
   useEffect(() => {
     dispatch(setPage(1));
-    dispatch(setQueryParams({ ...getRecipesQueryParams(1), q: userInput }));
-    prefetchNextPage({ ...getRecipesQueryParams(2), q: userInput });
+    dispatch(
+      setQueryParams(
+        getRecipesQueryParams(1, userInput, cuisine, diet, difficulty)
+      )
+    );
+    prefetchNextPage(
+      getRecipesQueryParams(2, userInput, cuisine, diet, difficulty)
+    );
   }, [userInput]);
+
+  useEffect(() => {
+    dispatch(setPage(1));
+    dispatch(
+      setQueryParams(
+        getRecipesQueryParams(1, userInput, cuisine, diet, difficulty)
+      )
+    );
+    prefetchNextPage(
+      getRecipesQueryParams(2, userInput, cuisine, diet, difficulty)
+    );
+  }, [difficulty, cuisine, diet]);
 
   return { error, isLoading, prefetchNextPage };
 }

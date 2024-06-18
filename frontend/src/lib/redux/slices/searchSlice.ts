@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { GetRecipesQueryParams, Recipe } from '../../../types/types';
+import {
+  CuisineQueryParam,
+  DietQueryParam,
+  DifficultyQueryParam,
+  GetRecipesQueryParams,
+  Recipe,
+} from '../../../types/types';
 import { getRecipesQueryParams } from '../../../utils/getRecipesQueryParams';
 
 interface searchSliceState {
@@ -10,15 +16,21 @@ interface searchSliceState {
   userInput?: string;
   queryParams?: GetRecipesQueryParams;
   isLoading?: boolean;
+  difficulty?: DifficultyQueryParam;
+  cuisine?: CuisineQueryParam;
+  diet?: DietQueryParam;
 }
 
 const initialState: searchSliceState = {
   data: [],
   page: 1,
   hasMore: true,
-  queryParams: getRecipesQueryParams(1),
+  queryParams: getRecipesQueryParams(1, '', '', '', ''),
   userInput: '',
   isLoading: false,
+  difficulty: '',
+  cuisine: '',
+  diet: '',
 };
 
 export const searchSlice = createSlice({
@@ -43,6 +55,15 @@ export const searchSlice = createSlice({
     isLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
+    setDifficulty: (state, action: PayloadAction<DifficultyQueryParam>) => {
+      state.difficulty = action.payload;
+    },
+    setCuisine: (state, action: PayloadAction<CuisineQueryParam>) => {
+      state.cuisine = action.payload;
+    },
+    setDiet: (state, action: PayloadAction<DietQueryParam>) => {
+      state.diet = action.payload;
+    },
   },
 });
 
@@ -53,5 +74,8 @@ export const {
   setUserInput,
   setQueryParams,
   isLoading,
+  setDifficulty,
+  setCuisine,
+  setDiet,
 } = searchSlice.actions;
 export default searchSlice.reducer;

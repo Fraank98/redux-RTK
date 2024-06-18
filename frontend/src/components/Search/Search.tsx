@@ -1,8 +1,17 @@
 import { useDebouncedCallback } from 'use-debounce';
 import { useAppDispatch } from '../../lib/redux/hooks';
 import { isLoading, setUserInput } from '../../lib/redux/slices/searchSlice';
+import {
+  useGetCuisinesQuery,
+  useGetDietsQuery,
+  useGetDifficultiesQuery,
+} from '../../lib/redux/services/filters';
+import FilterSelect from '../FilterSelect/FilterSelect';
 
 export default function Search() {
+  const { data: diets } = useGetDietsQuery();
+  const { data: difficulties } = useGetDifficultiesQuery();
+  const { data: cuisines } = useGetCuisinesQuery();
   const dispatch = useAppDispatch();
 
   const debounced = useDebouncedCallback((value: string) => {
@@ -26,99 +35,13 @@ export default function Search() {
         />
       </div>
       <div className='row-span-3 flex h-full items-center justify-center gap-2'>
-        <div className='relative flex h-full w-full items-center justify-center'>
-          <select
-            className='w-full appearance-none rounded-recipe-card bg-input-bg p-1 pl-3 shadow-default'
-            name='cuisine'
-            id='cuisine'
-          >
-            <option value='' disabled>
-              Cuisine
-            </option>
-            <option value='italian'>Italian</option>
-            <option value='mexican'>Mexican</option>
-            <option value='chinese'>Chinese</option>
-            <option value='korean'>Korean</option>
-            <option value='japanese'>Japanese</option>
-            <option value='american'>American</option>
-          </select>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke-width='1.5'
-            stroke='currentColor'
-            className='pointer-events-none absolute right-2 top-3 w-4'
-          >
-            <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              d='m19.5 8.25-7.5 7.5-7.5-7.5'
-            />
-          </svg>
-        </div>
-        <div className='relative flex h-full w-full items-center justify-center'>
-          <select
-            className='w-full appearance-none rounded-recipe-card bg-input-bg p-1 pl-3 shadow-default'
-            name='diet'
-            id='diet'
-          >
-            <option value='' disabled>
-              Diet
-            </option>
-            <option value='italian'>Italian</option>
-            <option value='mexican'>Mexican</option>
-            <option value='chinese'>Chinese</option>
-            <option value='korean'>Korean</option>
-            <option value='japanese'>Japanese</option>
-            <option value='american'>American</option>
-          </select>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke-width='1.5'
-            stroke='currentColor'
-            className='pointer-events-none absolute right-2 top-3 w-4'
-          >
-            <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              d='m19.5 8.25-7.5 7.5-7.5-7.5'
-            />
-          </svg>
-        </div>
-        <div className='relative flex h-full w-full items-center justify-center'>
-          <select
-            className='w-full appearance-none rounded-recipe-card bg-input-bg p-1 pl-3 shadow-default'
-            name='difficulty'
-            id='difficulty'
-          >
-            <option value='' disabled>
-              Difficulty
-            </option>
-            <option value='italian'>Italian</option>
-            <option value='mexican'>Mexican</option>
-            <option value='chinese'>Chinese</option>
-            <option value='korean'>Korean</option>
-            <option value='japanese'>Japanese</option>
-            <option value='american'>American</option>
-          </select>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke-width='1.5'
-            stroke='currentColor'
-            className='pointer-events-none absolute right-2 top-3 w-4'
-          >
-            <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              d='m19.5 8.25-7.5 7.5-7.5-7.5'
-            />
-          </svg>
-        </div>
+        <FilterSelect name='Cuisine' id='cuisine' options={cuisines} />
+        <FilterSelect
+          name='Difficulty'
+          id='difficulty'
+          options={difficulties}
+        />
+        <FilterSelect name='Diet' id='diet' options={diets} />
       </div>
     </div>
   );

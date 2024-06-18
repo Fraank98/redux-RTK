@@ -208,12 +208,15 @@ export interface components {
       date?: string;
     };
     Cuisine: {
+      id?: string;
       name?: string;
     };
     Difficulty: {
+      id?: string;
       name?: string;
     };
     Diet: {
+      id?: string;
       name?: string;
     };
   };

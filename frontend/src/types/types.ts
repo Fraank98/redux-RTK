@@ -9,28 +9,31 @@ export type AddRecipeRequestBody = NonNullable<
 
 export type Recipe = components['schemas']['Recipe'];
 
-type ExtendedDifficulty = {
-  id: string;
-  name?: components['schemas']['Difficulty']['name'];
-};
+export type Difficulty = components['schemas']['Difficulty'];
 
-type ExtendedCuisine = {
-  id: string;
-  name?: components['schemas']['Cuisine']['name'];
-};
+export type Cuisine = components['schemas']['Cuisine'];
 
-type ExtendedDiet = {
-  id: string;
-  name?: components['schemas']['Diet']['name'];
-};
+export type Diet = components['schemas']['Diet'];
 
 // Recipe can includes cuisine, difficulty, and diet based on the query params
 // in the generated open api spec they are not included
 export interface ExtendedRecipe extends Recipe {
-  difficulty?: ExtendedDifficulty;
-  cuisine?: ExtendedCuisine;
-  diet?: ExtendedDiet;
+  difficulty?: Difficulty;
+  cuisine?: Cuisine;
+  diet?: Diet;
 }
 
 export type GetRecipesQueryParams =
   paths['/recipes']['get']['parameters']['query'];
+
+export type Page = NonNullable<GetRecipesQueryParams>['_page'];
+export type QueryInput = NonNullable<GetRecipesQueryParams>['q'];
+export type DifficultyQueryParam = NonNullable<
+  paths['/recipes']['get']['parameters']['query']
+>['difficultyId'];
+export type CuisineQueryParam = NonNullable<
+  paths['/recipes']['get']['parameters']['query']
+>['cuisineId'];
+export type DietQueryParam = NonNullable<
+  paths['/recipes']['get']['parameters']['query']
+>['dietId'];
