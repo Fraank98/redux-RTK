@@ -3,6 +3,7 @@ import {
   AddCommentRequestBody,
   AddRecipeRequestBody,
   ExtendedRecipe,
+  GetRecipesQueryParams,
 } from '../../../types/types';
 import type { paths } from '../../../types/backend/backend';
 
@@ -13,10 +14,7 @@ export const recipesApi = createApi({
   tagTypes: ['Recipes', 'Comments'],
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    getRecipes: builder.query<
-      ExtendedRecipe[],
-      paths['/recipes']['get']['parameters']['query']
-    >({
+    getRecipes: builder.query<ExtendedRecipe[], GetRecipesQueryParams>({
       query: (params) => {
         const queryParams = new URLSearchParams();
         if (params?._page) queryParams.append('_page', params._page.toString());

@@ -31,3 +31,6 @@ export interface ExtendedRecipe extends Recipe {
   cuisine?: ExtendedCuisine;
   diet?: ExtendedDiet;
 }
+
+export type GetRecipesQueryParams =
+  paths['/recipes']['get']['parameters']['query'];

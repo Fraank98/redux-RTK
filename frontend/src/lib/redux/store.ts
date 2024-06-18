@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterSlice from './slices/counterSlice';
 import { recipesApi } from './services/recipes';
+import searchSlice from './slices/searchSlice';
 
 export const store = configureStore({
   reducer: {
-    counterSlice: counterSlice,
+    searchSlice: searchSlice,
     [recipesApi.reducerPath]: recipesApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
