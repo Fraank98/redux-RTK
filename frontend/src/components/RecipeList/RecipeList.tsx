@@ -7,10 +7,14 @@ import { SerializedError } from '@reduxjs/toolkit';
 
 export default function RecipeList({
   error,
+  isError,
   isLoading,
+  isFetching,
 }: {
   error: FetchBaseQueryError | SerializedError | undefined;
+  isError: boolean;
   isLoading: boolean;
+  isFetching: boolean;
 }) {
   const dispatch = useAppDispatch();
   const page = useAppSelector((state) => state.searchSlice.page);
@@ -24,14 +28,14 @@ export default function RecipeList({
       recipeListRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [page]);
 
-  if (error)
+  if (error || isError)
     return (
       <p className='absolute left-0 right-0 top-2/4 m-auto text-center text-3xl text-text-primary'>
         Oh no, there was an error. <br /> Try again later
       </p>
     );
 
-  if (isLoading || isQuering)
+  if (isLoading || isQuering || isFetching)
     return (
       <p className='absolute left-0 right-0 top-2/4 m-auto text-center text-3xl text-text-primary'>
         Loading...

@@ -17,7 +17,8 @@ import { GetRecipesQueryParams } from '../types/types';
 export default function useSearchEngine() {
   const dispatch = useAppDispatch();
   const queryParams = useAppSelector((state) => state.searchSlice.queryParams);
-  const { data, error, isLoading } = useGetRecipesQuery(queryParams);
+  const { data, error, isLoading, isError, isFetching } =
+    useGetRecipesQuery(queryParams);
   const difficulty = useAppSelector((state) => state.searchSlice.difficulty);
   const cuisine = useAppSelector((state) => state.searchSlice.cuisine);
   const diet = useAppSelector((state) => state.searchSlice.diet);
@@ -86,5 +87,5 @@ export default function useSearchEngine() {
     );
   }, [difficulty, cuisine, diet]);
 
-  return { error, isLoading, prefetchNextPage };
+  return { error, isLoading, prefetchNextPage, isError, isFetching };
 }
