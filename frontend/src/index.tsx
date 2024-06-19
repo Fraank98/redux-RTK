@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Header from './components/Header/Header';
 import AddRecipePage from './pages/AddRecipePage';
 import Home from './pages/Home';
+import NotFoundPage from './pages/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,15 @@ const router = createBrowserRouter([
       <>
         <Header />
         <AddRecipePage />
+      </>
+    ),
+  },
+  {
+    path: '*',
+    element: (
+      <>
+        <Header />
+        <NotFoundPage />
       </>
     ),
   },
