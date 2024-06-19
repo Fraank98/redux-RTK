@@ -73,7 +73,7 @@ export default function AddRecipeForm({
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className='row-span-9 grid grid-cols-1 gap-4 overflow-scroll px-3 pb-6'
+        className='row-span-9 grid grid-cols-1 gap-4 overflow-scroll px-3 pb-6 pt-4'
       >
         <div className='grid gap-3'>
           <p className='text-text-primary'>Recipe Detailes</p>

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './lib/redux/store';
 import { StrictMode } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
 import AddRecipePage from './pages/AddRecipePage';
 import Home from './pages/Home';
 import NotFoundPage from './pages/NotFoundPage';
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     path: '/',
     element: (
       <>
-        <Header />
+        <Navbar />
         <Home />
       </>
     ),
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     path: '/add-recipe',
     element: (
       <>
-        <Header />
+        <Navbar />
         <AddRecipePage />
       </>
     ),
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     path: '*',
     element: (
       <>
-        <Header />
+        <Navbar />
         <NotFoundPage />
       </>
     ),
