@@ -3,8 +3,8 @@ import { ExtendedRecipe } from '../../types/types';
 
 export default function RecipeCard({ recipe }: { recipe: ExtendedRecipe }) {
   return (
-    <div className='grid h-96 w-full grid-cols-6 grid-rows-6 gap-2 rounded-recipe-card bg-recipe-card-bg p-3 shadow-default'>
-      <div className='relative col-span-2 row-span-2 overflow-hidden rounded-recipe-card'>
+    <div className='grid h-recipe-card w-full grid-cols-6 grid-rows-6 gap-2 rounded-primary bg-recipe-card-bg p-3 shadow-default'>
+      <div className='relative col-span-2 row-span-2 overflow-hidden rounded-primary'>
         <img
           src={BASE_URL + `${recipe.image}`}
           alt='recipe'
@@ -26,14 +26,14 @@ export default function RecipeCard({ recipe }: { recipe: ExtendedRecipe }) {
       )}
       <div className='col-span-6 row-span-1 row-start-3 flex items-center justify-center gap-2'>
         {recipe.cuisine?.name && (
-          <div className='flex items-center justify-center rounded-full border border-solid border-secondary p-1 px-3'>
+          <div className='flex items-center justify-center rounded-element border border-solid border-secondary p-1 px-3'>
             <p className='text-center text-sm text-text-primary'>
               {recipe.cuisine.name}
             </p>
           </div>
         )}
         {recipe.diet?.name && (
-          <div className='flex items-center justify-center rounded-full border border-solid border-secondary p-1 px-3'>
+          <div className='flex items-center justify-center rounded-element border border-solid border-secondary p-1 px-3'>
             <p className='text-center text-sm text-text-primary'>
               {recipe.diet.name}
             </p>
@@ -50,7 +50,7 @@ export default function RecipeCard({ recipe }: { recipe: ExtendedRecipe }) {
         <p className='line-clamp-2 text-text-primary'>{recipe.instructions}</p>
       </div>
       <div className='col-span-6 row-span-1 row-start-6 flex items-center justify-center gap-2'>
-        <div className='flex h-full w-full items-center justify-center rounded-recipe-card bg-primary px-3'>
+        <div className='flex h-full w-full items-center justify-center rounded-primary bg-primary px-3'>
           <button className='text-center text-text-secondary'>
             View details
           </button>

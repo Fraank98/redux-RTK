@@ -1,45 +1,45 @@
+import { useFormContext } from 'react-hook-form';
 import { useAppDispatch } from '../../lib/redux/hooks';
-import {
-  setCuisine,
-  setDiet,
-  setDifficulty,
-} from '../../lib/redux/slices/searchSlice';
 import { Cuisine, Diet, Difficulty } from '../../types/types';
+import { ActionCreatorWithOptionalPayload } from '@reduxjs/toolkit';
 
-export default function FilterSelect({
-  name,
-  id,
-  options,
-}: {
+// omit and edit name and id types to make them non nullable
+interface CustomSelectProps
+  extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'name' | 'id'> {
+  reduxAction?: ActionCreatorWithOptionalPayload<string | undefined>;
   name: string;
   id: string;
   options?: Difficulty[] | Cuisine[] | Diet[];
-}) {
-  const dispatch = useAppDispatch();
+  hideAllOption?: boolean;
+}
 
-  const setFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    switch (e.target.name) {
-      case 'Cuisine':
-        return dispatch(setCuisine(e.target.value));
-      case 'Difficulty':
-        return dispatch(setDifficulty(e.target.value));
-      case 'Diet':
-        return dispatch(setDiet(e.target.value));
-    }
-  };
+export default function FilterSelect({
+  reduxAction,
+  name,
+  id,
+  options,
+  hideAllOption,
+  ...props
+}: CustomSelectProps) {
+  const dispatch = useAppDispatch();
+  const register = useFormContext();
 
   return (
     <div className='relative flex h-full w-full items-center justify-center'>
       <select
-        className='h-full w-full appearance-none rounded-recipe-card bg-input-bg p-1 pl-3 shadow-default'
+        {...(register && register.register(name))}
+        {...props}
+        className={`${props.className} h-full w-full appearance-none truncate rounded-primary bg-input-bg p-1 pl-3 capitalize shadow-default`}
         name={name}
         id={id}
-        onChange={(e) => setFilter(e)}
+        onChange={
+          reduxAction ? (e) => dispatch(reduxAction(e.target.value)) : () => {}
+        }
       >
         <option value='' disabled selected>
           {name}
         </option>
-        <option value=''>All</option>
+        {!hideAllOption && <option value=''>All</option>}
         {options?.map((option, index) => (
           <option key={index} value={option.id}>
             {option.name}

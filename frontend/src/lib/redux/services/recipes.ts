@@ -32,7 +32,7 @@ export const recipesApi = createApi({
           );
         }
         return {
-          url: `/recipes?${queryParams.toString()}`, // _expand=cuisine,diet,difficulty is not supported by the backend
+          url: `/recipes?${queryParams}`,
         };
       },
       providesTags: (result) =>
@@ -44,12 +44,24 @@ export const recipesApi = createApi({
           : [{ type: 'Recipes', id: 'RECIPES_LIST' }],
     }),
     addRecipe: builder.mutation<null, AddRecipeRequestBody>({
-      query: (newRecipe) => ({
-        url: '/recipes',
-        method: 'POST',
-        body: newRecipe,
-        formData: true,
-      }),
+      query: (newRecipe) => {
+        const formData = new FormData();
+        Object.keys(newRecipe).forEach((key) => {
+          const value = newRecipe[key as keyof AddRecipeRequestBody];
+          if (value !== undefined) {
+            if (Array.isArray(value)) {
+              formData.append(key, value.join(',')); // for ingredients (array)
+            } else {
+              formData.append(key, value);
+            }
+          }
+        });
+        return {
+          url: '/recipes',
+          method: 'POST',
+          body: formData,
+        };
+      },
       invalidatesTags: [{ type: 'Recipes', id: 'RECIPES_LIST' }],
     }),
     getRecipeById: builder.query<

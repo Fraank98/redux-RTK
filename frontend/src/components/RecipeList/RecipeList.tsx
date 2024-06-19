@@ -42,18 +42,21 @@ export default function RecipeList({
     <div className='relative row-span-8 row-start-3 grid grid-rows-8'>
       <div
         ref={recipeListRef}
-        className='row-span-7 grid gap-3 overflow-scroll p-4 pb-6'
+        className='row-span-7 grid gap-3 overflow-scroll px-3 pb-6 pt-4'
       >
         {recipes?.map((recipe) => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
+        {recipes.length === 0 && (
+          <p className='text-center text-text-primary'>No recipes found</p>
+        )}
       </div>
       <div className='row-span-1 grid grid-cols-3 shadow-default'>
         <div className='flex items-center justify-center'>
           <button
             disabled={page === 1}
             onClick={() => dispatch(setPage(page - 1))}
-            className={`${page === 1 ? 'opacity-50' : ''} rounded-full bg-primary p-3 px-6 text-center text-lg text-text-secondary`}
+            className={`${page === 1 ? 'opacity-50' : ''} rounded-element bg-primary p-3 px-6 text-center text-lg text-text-secondary`}
           >
             Prev
           </button>
@@ -65,7 +68,7 @@ export default function RecipeList({
           <button
             disabled={!hasMore}
             onClick={() => dispatch(setPage(page + 1))}
-            className={`${!hasMore ? 'opacity-50' : ''} flex items-center justify-center rounded-full bg-primary p-3 px-6 text-lg text-text-secondary`}
+            className={`${!hasMore ? 'opacity-50' : ''} flex items-center justify-center rounded-element bg-primary p-3 px-6 text-lg text-text-secondary`}
           >
             Next
           </button>
