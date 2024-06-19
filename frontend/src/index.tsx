@@ -9,6 +9,7 @@ import Header from './components/Header/Header';
 import AddRecipePage from './pages/AddRecipePage';
 import Home from './pages/Home';
 import NotFoundPage from './pages/NotFoundPage';
+import { SnackbarProvider } from 'notistack';
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <SnackbarProvider autoHideDuration={3000} maxSnack={3}>
+        <RouterProvider router={router} />
+      </SnackbarProvider>
     </Provider>
   </StrictMode>
 );

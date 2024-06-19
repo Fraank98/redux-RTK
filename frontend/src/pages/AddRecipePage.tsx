@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import AddRecipeForm from '../components/AddRecipeForm/AddRecipeForm';
 import { useAddRecipeMutation } from '../lib/redux/services/recipes';
+import { enqueueSnackbar } from 'notistack';
 
 export default function AddRecipePage() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [addRecipe, { isLoading, isSuccess, error, isError }] =
     useAddRecipeMutation();
 
@@ -11,6 +11,14 @@ export default function AddRecipePage() {
 
   if (isSuccess) {
     navigation('/');
+  }
+
+  if (isError || error) {
+    enqueueSnackbar({
+      variant: 'error',
+      message: 'Something went wrong...',
+      preventDuplicate: true,
+    });
   }
 
   return (
