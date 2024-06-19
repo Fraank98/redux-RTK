@@ -1,10 +1,34 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './lib/redux/store';
 import { StrictMode } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Header from './components/Header/Header';
+import AddRecipePage from './pages/AddRecipePage';
+import Home from './pages/Home';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <>
+        <Header />
+        <Home />
+      </>
+    ),
+  },
+  {
+    path: '/add-recipe',
+    element: (
+      <>
+        <Header />
+        <AddRecipePage />
+      </>
+    ),
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +36,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
   </StrictMode>
 );

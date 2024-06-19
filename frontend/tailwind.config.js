@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      height: {
+        'recipe-card': '360px',
+      },
       colors: {
         primary: '#F52F26',
         secondary: '#000000',
@@ -16,7 +19,7 @@ module.exports = {
         },
       },
       borderRadius: {
-        'recipe-card': '1.5rem',
+        primary: '1.5rem',
         element: '9999px',
       },
       boxShadow: {

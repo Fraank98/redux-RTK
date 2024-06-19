@@ -64,6 +64,9 @@ export const searchSlice = createSlice({
     setDiet: (state, action: PayloadAction<DietQueryParam>) => {
       state.diet = action.payload;
     },
+    reset: () => {
+      return initialState;
+    },
   },
 });
 
@@ -77,5 +80,6 @@ export const {
   setDifficulty,
   setCuisine,
   setDiet,
+  reset,
 } = searchSlice.actions;
 export default searchSlice.reducer;
