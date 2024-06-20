@@ -103,14 +103,6 @@ comments.
 
 ![output-onlinepngtools](https://github.com/Fraank98/interviews-front-end-assignment/assets/65824118/364d0b68-efe1-430f-925c-29d0dc6e9a5b)
 
-### Pre-commit hooks
-
-Prepare `Husky` from the project root:
-
-```bash
-npm run prepare
-```
-
 ### Installing
 
 Install the project dependencies from the project root:
@@ -119,15 +111,26 @@ Install the project dependencies from the project root:
 npm install
 ```
 
+### Pre-commit hooks
+
+Prepare `Husky` from the project root:
+
+```bash
+npm run prepare
+```
+
 ### Frontend
 
 Add the `.env` file to the frontend project root. See `.env.example` for an example.
+Run frontend from the project root:
 
 ```bash
 npm start -w frontend
 ```
 
 ### Server
+
+Run server from the project root:
 
 ```bash
 npm start -w server
