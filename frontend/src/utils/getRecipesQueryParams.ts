@@ -7,7 +7,7 @@ import {
   QueryInput,
 } from '../types/types';
 
-export const LIMIT: number = 3; // number of recipes per page
+export const LIMIT: number = 8; // number of recipes per page
 
 // useful in order to not to write the same code over and over
 export const getRecipesQueryParams = (
