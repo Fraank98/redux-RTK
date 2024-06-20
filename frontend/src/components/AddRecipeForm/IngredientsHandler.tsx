@@ -3,22 +3,20 @@ import {
   FieldArrayWithId,
   UseFieldArrayAppend,
   UseFieldArrayRemove,
-  UseFormReturn,
+  useFormContext,
 } from 'react-hook-form';
 import { FormData } from './AddRecipeForm';
 
 export default function IngredientsHandler({
   ingredients,
-  methods,
   append,
   remove,
 }: {
   ingredients: FieldArrayWithId<FormData, 'ingredients', 'id'>[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  methods: UseFormReturn<FormData, any, undefined>;
   append: UseFieldArrayAppend<FormData, 'ingredients'>;
   remove: UseFieldArrayRemove;
 }) {
+  const form = useFormContext();
   return (
     <div className='grid w-full gap-2'>
       <p className='text-text-primary'>Main Ingredients</p>
@@ -28,7 +26,7 @@ export default function IngredientsHandler({
           className='relative flex w-full items-center justify-center gap-1'
         >
           <Controller
-            control={methods.control}
+            control={form.control}
             name={`ingredients.${index}.value`}
             defaultValue={ingredient.value}
             rules={{
