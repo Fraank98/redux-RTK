@@ -101,6 +101,14 @@ comments.
 
 ## How to run
 
+### Pre-commit hooks
+
+Prepare `Husky` from the project root:
+
+```bash
+npm run prepare
+```
+
 ### Installing
 
 Install the project dependencies from the project root:
@@ -110,6 +118,8 @@ npm install
 ```
 
 ### Frontend
+
+Add the `.env` file to the frontend project root. See `.env.example` for an example.
 
 ```bash
 npm start -w frontend
