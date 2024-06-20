@@ -1,16 +1,13 @@
-import { UseFormReturn } from 'react-hook-form';
-import { FormData } from './AddRecipeForm';
+import { useFormContext } from 'react-hook-form';
 
 export default function ImageInput({
   imageUrl,
-  setImageUrl,
-  methods,
+  onImageUrlChange,
 }: {
   imageUrl: string | null;
-  setImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  methods: UseFormReturn<FormData, any, undefined>;
+  onImageUrlChange: (imageUrl: string | null) => void;
 }) {
+  const form = useFormContext();
   return (
     <div className='grid grid-cols-2 gap-4'>
       <p className='text-text-primary'>Recipe Image</p>
@@ -42,11 +39,11 @@ export default function ImageInput({
         required
         type='file'
         accept='image/*'
-        {...methods.register('image')}
+        {...form.register('image')}
         className='absolute -z-10 opacity-0'
         onChange={(e) =>
           e.target.files?.[0] &&
-          setImageUrl(URL.createObjectURL(e.target.files?.[0]))
+          onImageUrlChange(URL.createObjectURL(e.target.files?.[0]))
         }
       />
       {imageUrl && (

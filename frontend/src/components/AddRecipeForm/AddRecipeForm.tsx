@@ -89,10 +89,10 @@ export default function AddRecipeForm({
             placeholder='Recipe Instructions'
             {...methods.register('instructions')}
           />
-          <IngredientsHandler {...{ ingredients, methods, append, remove }} />
+          <IngredientsHandler {...{ ingredients, append, remove }} />
         </div>
-        <ImageInput {...{ imageUrl, setImageUrl, methods }} />
-        <PreferencesSelect {...{ cuisines, diets, difficulties, methods }} />
+        <ImageInput imageUrl={imageUrl} onImageUrlChange={setImageUrl} />
+        <PreferencesSelect {...{ cuisines, diets, difficulties }} />
         <button
           className='mt-6 w-full rounded-primary bg-primary p-3 uppercase text-text-secondary'
           type='submit'

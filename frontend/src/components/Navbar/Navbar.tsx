@@ -1,8 +1,8 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const [hidden, setHidden] = useState(true);
   return (
     <>
       <nav className='row-span-1 bg-gray-100'>
@@ -52,11 +52,7 @@ export default function Navbar() {
               </div>
             </div>
             <div className='flex items-center md:hidden'>
-              <button
-                onClick={() =>
-                  mobileMenuRef.current?.classList.toggle('hidden')
-                }
-              >
+              <button onClick={() => setHidden(!hidden)}>
                 <svg
                   className='h-6 w-6'
                   xmlns='http://www.w3.org/2000/svg'
@@ -76,11 +72,10 @@ export default function Navbar() {
           </div>
         </div>
         <div
-          ref={mobileMenuRef}
-          className='absolute z-20 hidden w-full bg-white shadow-xl md:hidden'
+          className={`${hidden ? 'hidden' : ''} absolute z-20 w-full bg-white shadow-xl md:hidden`}
         >
           <NavLink
-            onClick={() => mobileMenuRef.current?.classList.toggle('hidden')}
+            onClick={() => setHidden(!hidden)}
             to='/'
             className={({ isActive }) =>
               `${isActive ? 'text-primary' : 'text-text-primary'} block px-4 py-2 text-sm hover:bg-gray-200`
@@ -89,7 +84,7 @@ export default function Navbar() {
             Home
           </NavLink>
           <NavLink
-            onClick={() => mobileMenuRef.current?.classList.toggle('hidden')}
+            onClick={() => setHidden(!hidden)}
             to='/add-recipe'
             className={({ isActive }) =>
               `${isActive ? 'text-primary' : 'text-text-primary'} block px-4 py-2 text-sm hover:bg-gray-200`
