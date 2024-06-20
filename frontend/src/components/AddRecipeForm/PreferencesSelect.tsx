@@ -17,6 +17,7 @@ export default function PreferencesSelect({
     <div className='grid gap-3'>
       <p className='text-text-primary'>Preferences</p>
       <FilterSelect
+        data-testid='cuisine'
         required
         hideAllOption
         options={cuisines}
@@ -25,6 +26,7 @@ export default function PreferencesSelect({
         className='!h-12'
       />
       <FilterSelect
+        data-testid='diet'
         required
         hideAllOption
         options={diets}
@@ -33,6 +35,7 @@ export default function PreferencesSelect({
         className='!h-12'
       />
       <FilterSelect
+        data-testid='difficulty'
         required
         hideAllOption
         options={difficulties}

@@ -72,18 +72,21 @@ export default function AddRecipeForm({
   return (
     <FormProvider {...methods}>
       <form
+        data-testid='add-recipe-form'
         onSubmit={methods.handleSubmit(onSubmit)}
         className='no-scrollbar grid grid-cols-1 gap-4 overflow-scroll px-3 pb-6 pt-4 lg:col-start-2'
       >
         <div className='grid gap-3'>
           <p className='text-text-primary'>Recipe Detailes</p>
           <input
+            data-testid='new-recipe-name'
             required
             className='h-12 w-full rounded-primary bg-input-bg p-1 pl-3 shadow-default'
             placeholder='Recipe Name'
             {...methods.register('name')}
           />
           <textarea
+            data-testid='new-recipe-instructions'
             className='h-20 w-full resize-none rounded-primary bg-input-bg p-1 pl-3 shadow-default placeholder:pt-1'
             required
             placeholder='Recipe Instructions'
@@ -94,6 +97,7 @@ export default function AddRecipeForm({
         <ImageInput imageUrl={imageUrl} onImageUrlChange={setImageUrl} />
         <PreferencesSelect {...{ cuisines, diets, difficulties }} />
         <button
+          data-testid='add-recipe-button'
           className='mt-6 w-full rounded-primary bg-primary p-3 uppercase text-text-secondary'
           type='submit'
         >

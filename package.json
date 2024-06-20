@@ -4,7 +4,14 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "husky": "^9.0.11"
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "husky": "^9.0.11",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.1.5"
   },
   "engines": {
     "node": ">=20.0.0",

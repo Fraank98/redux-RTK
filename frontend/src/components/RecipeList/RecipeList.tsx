@@ -30,7 +30,10 @@ export default function RecipeList({
 
   if (error || isError)
     return (
-      <p className='absolute left-0 right-0 top-2/4 m-auto text-center text-3xl text-text-primary'>
+      <p
+        data-testid='recipe-list-fetch-error'
+        className='absolute left-0 right-0 top-2/4 m-auto text-center text-3xl text-text-primary'
+      >
         Oh no, there was an error. <br /> Try again later
       </p>
     );

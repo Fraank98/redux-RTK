@@ -1,3 +1,6 @@
 # Ignore artifacts:
 build
 coverage
+*.test.tsx
+*.spec.ts
+jest.config.js

@@ -9,7 +9,7 @@ export default function Navbar() {
         <div className='mx-auto max-w-6xl px-4'>
           <div className='flex justify-between'>
             <div className='flex space-x-4'>
-              <div>
+              <div data-testid='logo'>
                 <NavLink
                   to='/'
                   className='flex items-center px-2 py-5 text-gray-700'
@@ -18,12 +18,12 @@ export default function Navbar() {
                     xmlns='http://www.w3.org/2000/svg'
                     fill='none'
                     viewBox='0 0 24 24'
-                    stroke-width='1.5'
+                    strokeWidth='1.5'
                     className='w-6 stroke-primary'
                   >
                     <path
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
                       d='M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25'
                     />
                   </svg>
@@ -32,7 +32,10 @@ export default function Navbar() {
                 </NavLink>
               </div>
 
-              <div className='hidden items-center space-x-1 md:flex'>
+              <div
+                data-testid='links'
+                className='hidden items-center space-x-1 md:flex'
+              >
                 <NavLink
                   to='/'
                   className={({ isActive }) =>
@@ -52,7 +55,11 @@ export default function Navbar() {
               </div>
             </div>
             <div className='flex items-center md:hidden'>
-              <button onClick={() => setHidden(!hidden)}>
+              <button
+                id='toggle-menu'
+                data-testid='toggle-menu'
+                onClick={() => setHidden(!hidden)}
+              >
                 <svg
                   className='h-6 w-6'
                   xmlns='http://www.w3.org/2000/svg'
@@ -61,9 +68,9 @@ export default function Navbar() {
                   stroke='currentColor'
                 >
                   <path
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                    stroke-width='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
                     d='M4 6h16M4 12h16M4 18h16'
                   />
                 </svg>
@@ -72,6 +79,7 @@ export default function Navbar() {
           </div>
         </div>
         <div
+          data-testid='menu-links'
           className={`${hidden ? 'hidden' : ''} absolute z-20 w-full bg-white shadow-xl md:hidden`}
         >
           <NavLink
@@ -84,6 +92,7 @@ export default function Navbar() {
             Home
           </NavLink>
           <NavLink
+            data-testid='add-recipe-link'
             onClick={() => setHidden(!hidden)}
             to='/add-recipe'
             className={({ isActive }) =>

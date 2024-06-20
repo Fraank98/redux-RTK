@@ -34,6 +34,7 @@ export default function Search() {
     <div className='row-span-4 row-start-1 grid grid-rows-8 place-items-center px-3 md:place-items-center'>
       <div className='relative row-span-5 flex w-full items-center justify-center lg:w-full'>
         <input
+          data-testid='search-input'
           type='text'
           className='w-full max-w-[40rem] rounded-primary bg-input-bg p-3 shadow-default'
           placeholder='Search for recipes...'
