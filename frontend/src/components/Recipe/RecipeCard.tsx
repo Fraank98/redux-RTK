@@ -3,7 +3,7 @@ import { ExtendedRecipe } from '../../types/types';
 
 export default function RecipeCard({ recipe }: { recipe: ExtendedRecipe }) {
   return (
-    <div className='grid h-recipe-card w-full grid-cols-6 grid-rows-6 gap-2 rounded-primary bg-recipe-card-bg p-3 shadow-default'>
+    <div className='grid h-recipe-card w-full max-w-96 grid-cols-6 grid-rows-6 gap-2 rounded-primary bg-recipe-card-bg p-3 shadow-default'>
       <div className='relative col-span-2 row-span-2 overflow-hidden rounded-primary'>
         <img
           src={BASE_URL + `${recipe.image}`}

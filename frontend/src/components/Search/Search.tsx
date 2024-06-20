@@ -31,16 +31,16 @@ export default function Search() {
   };
 
   return (
-    <div className='row-span-4 row-start-1 grid grid-rows-8 px-3'>
-      <div className='relative row-span-5 flex items-center justify-center'>
+    <div className='row-span-4 row-start-1 grid grid-rows-8 place-items-center px-3 md:place-items-center'>
+      <div className='relative row-span-5 flex w-full items-center justify-center lg:w-full'>
         <input
           type='text'
-          className='w-full rounded-primary bg-input-bg p-3 shadow-default'
+          className='w-full max-w-[40rem] rounded-primary bg-input-bg p-3 shadow-default'
           placeholder='Search for recipes...'
           onChange={handleChange}
         />
       </div>
-      <div className='row-span-2 flex h-full items-center justify-center gap-2'>
+      <div className='row-span-2 flex h-full w-full max-w-lg items-center justify-center gap-2'>
         <FilterSelect
           name='Cuisine'
           id='cuisine'

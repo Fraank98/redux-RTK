@@ -46,7 +46,7 @@ export default function RecipeList({
     <div className='relative row-span-8 row-start-3 grid grid-rows-8'>
       <div
         ref={recipeListRef}
-        className='row-span-7 grid gap-3 overflow-scroll px-3 pb-6 pt-4'
+        className='row-span-7 grid grid-flow-dense place-items-center gap-3 overflow-scroll px-3 pb-6 pt-4 md:grid-cols-3 lg:row-span-8 lg:auto-cols-min lg:auto-rows-min lg:grid-cols-4 lg:gap-6 lg:pb-28'
       >
         {recipes?.map((recipe) => (
           <RecipeCard key={recipe.id} recipe={recipe} />
@@ -55,7 +55,7 @@ export default function RecipeList({
           <p className='text-center text-text-primary'>No recipes found</p>
         )}
       </div>
-      <div className='row-span-1 grid grid-cols-3 shadow-default'>
+      <div className='row-span-1 grid grid-cols-3 shadow-default lg:absolute lg:bottom-5 lg:left-0 lg:right-0 lg:m-auto lg:flex lg:max-w-96 lg:items-center lg:justify-center lg:gap-5 lg:rounded-element lg:bg-white lg:p-3'>
         <div className='flex items-center justify-center'>
           <button
             disabled={page === 1}
