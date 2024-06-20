@@ -101,6 +101,8 @@ comments.
 
 ## How to run
 
+![output-onlinepngtools](https://github.com/Fraank98/interviews-front-end-assignment/assets/65824118/364d0b68-efe1-430f-925c-29d0dc6e9a5b)
+
 ### Pre-commit hooks
 
 Prepare `Husky` from the project root:
